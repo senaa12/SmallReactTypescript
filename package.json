@@ -1,0 +1,46 @@
+{
+  "name": "smallreacttypescript",
+  "version": "1.0.0",
+  "description": "Small personal boilerplate for react project written in typescript",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "start": "webpack-dev-server --progress --colors --config ./webpack.config.js --open --mode development --history-api-fallback"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luka-senicic/SmallReactTypescript.git"
+  },
+  "keywords": [
+    "React",
+    "Typescript"
+  ],
+  "author": "Luka Senicic",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/luka-senicic/SmallReactTypescript/issues"
+  },
+  "homepage": "https://github.com/luka-senicic/SmallReactTypescript#readme",
+  "devDependencies": {
+    "@types/react": "^16.7.20",
+    "@types/react-dom": "^16.0.11",
+    "awesome-typescript-loader": "^5.2.1",
+    "css-loader": "^2.1.0",
+    "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.11.0",
+    "react-hot-loader": "^4.6.3",
+    "sass-loader": "^7.1.0",
+    "source-map-loader": "^0.2.4",
+    "style-loader": "^0.23.1",
+    "typescript": "^3.2.4",
+    "webpack": "^4.29.0",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-middleware": "^3.5.1",
+    "webpack-dev-server": "^3.1.14",
+    "webpack-hot-middleware": "^2.24.3"
+  },
+  "dependencies": {
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
+  }
+}
