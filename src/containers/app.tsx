@@ -2,6 +2,7 @@ import * as React from "react";
 import './app.scss';
 
 import Layer from "../components/layer/layer";
+import Button from "../components/button/button";
 
 export interface AppProps{
 
@@ -26,8 +27,9 @@ export default class App extends React.Component<AppProps, AppState> {
     public render() {
         return (
             <>
-            <Layer isOpen={this.state.portalShown}>probaaa</Layer>
-            <button onClick={this._showPortal}>show</button>
+            <br /><br /><br /><br /><br />
+            <Layer isOpen={this.state.portalShown} dimBackground={true}>probaaa</Layer>
+            <Button onClick={this._showPortal}>Show Portal</Button>
             </>
         );
     }

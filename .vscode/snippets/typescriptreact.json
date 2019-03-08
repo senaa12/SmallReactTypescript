@@ -1,0 +1,74 @@
+{
+  "TS React Comp": {
+    "prefix": "_rcomp",
+    "body": [
+      "import * as React from 'react';\n",
+      "import './${1:${TM_FILENAME_BASE/(.*)$/${1}/}}.scss';\n",
+
+      "export interface ${2:${TM_FILENAME_BASE/(.{1})(.*)$/${1:/upcase}$2/}}Props {\n",
+      "}\n",
+
+      "export interface ${2}State {\n",
+      "}\n",
+
+      "export default class ${2} extends React.Component<${2}Props, ${2}State> {",
+      "\tconstructor(props: ${2}Props) {",
+      "\t\tsuper(props);\n",
+      "\t}\n",
+
+      "\tpublic render(): React.ReactElement<${2}> {",
+      "\t\treturn (",
+      "\t\t\t<div>\n",
+      "\t\t\t</div>",
+      "\t\t);",
+      "\t}",
+      "}"
+    ],
+    "description": "React Component"
+  },
+
+  "TS Redux Container": {
+    "prefix": "_rcont",
+    "body": [
+      "import * as React from 'react';",
+      "import { connect } from 'react-redux';",
+      "import { RootReducerState } from '../../reducers/rootReducer';\n",
+      "import './${1:${TM_FILENAME_BASE/(.*)$/${1}/}}.scss';\n",
+
+      "interface ${2:${TM_FILENAME_BASE/(.{1})(.*)$/${1:/upcase}$2/}}Props {\n",
+      "}\n",
+
+      "interface ${2}State {\n",
+      "}\n",
+
+      "function mapStateToProps(state: RootReducerState): Partial<${2}Props> {",
+      "\treturn {\n",
+      "\t};",
+      "}\n",
+
+      "function mapDispatchToProps(dispatch: any): Partial<${2}Props> {",
+      "\treturn {\n",
+      "\t};",
+      "}\n",
+
+      "class ${2} extends React.Component<${2}Props, ${2}State> {",
+      "\tconstructor(props: ${2}Props) {",
+      "\t\tsuper(props);\n",
+      "\t}\n",
+
+      "\tpublic render(): React.ReactElement<${2}> {",
+      "\t\treturn (",
+      "\t\t\t<div>\n",
+      "\t\t\t</div>",
+      "\t\t);",
+      "\t}",
+      "}\n",
+
+      "export default connect(",
+      "\tmapStateToProps,",
+      "\tmapDispatchToProps",
+      ")(${2});"
+    ],
+    "description": "React Container"
+  }
+}
