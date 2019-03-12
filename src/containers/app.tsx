@@ -1,5 +1,5 @@
 import * as React from "react";
-import './app.scss';
+import "./app.scss";
 
 import Layer from "../components/layer/layer";
 import Button from "../components/button/button";

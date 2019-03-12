@@ -1,6 +1,6 @@
-import * as React from 'react';
+import * as React from "react";
 
-import './button.scss';
+import "./button.scss";
 
 export interface ButtonProps {
     disabled?: boolean;
@@ -8,7 +8,6 @@ export interface ButtonProps {
     className?: string;
     onClick: () => void;
 }
-
 
 export default class Button extends React.Component<ButtonProps, never> {
     constructor(props: ButtonProps) {
@@ -18,7 +17,7 @@ export default class Button extends React.Component<ButtonProps, never> {
     private static defaultProps: Partial<ButtonProps> = {
         disabled: false,
         className: ""
-    }
+    };
 
     private _getClassName = () => {
         let className: string = "my-button disable-selection" + this.props.className;

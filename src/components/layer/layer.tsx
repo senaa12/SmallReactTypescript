@@ -14,16 +14,18 @@ export interface LayerState {
 }
 
 export default class Layer extends React.Component<LayerProps, LayerState> {
-    constructor(props: LayerProps){
+    constructor(props: LayerProps) {
         super(props);
         this.state = {
-            portal: props.isOpen ? ReactDOM.createPortal(<div className={this._getClassName()}>{this.props.children}</div>, document.body) : null
-        }
+            portal: props.isOpen ?
+                ReactDOM.createPortal(<div className={this._getClassName()}>{this.props.children}</div>, document.body)
+                : null
+        };
     }
 
     private static defaultProps: Partial<LayerProps> = {
         dimBackground: false
-    }
+    };
 
     private _getClassName = () => {
         let className: string = "my-layer";
@@ -33,9 +35,11 @@ export default class Layer extends React.Component<LayerProps, LayerState> {
         return className;
     }
 
-    public componentDidUpdate(prevProps: LayerProps){
-        if(prevProps.isOpen !== this.props.isOpen){
-            this.setState({ portal : this.props.isOpen ? ReactDOM.createPortal(<div className={this._getClassName()}>{this.props.children}</div>, document.body) : null });
+    public componentDidUpdate(prevProps: LayerProps) {
+        if (prevProps.isOpen !== this.props.isOpen) {
+            this.setState({ portal : this.props.isOpen ?
+                ReactDOM.createPortal(<div className={this._getClassName()}>{this.props.children}</div>, document.body)
+                : null });
         }
     }
 
