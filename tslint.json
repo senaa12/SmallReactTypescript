@@ -1,0 +1,16 @@
+{
+  "defaultSeverity": "warning",
+  "extends": "tslint-config-airbnb",
+  "linterOptions": {
+    "exclude": ["node_modules/**/*.ts"]
+  },
+  "rules": {
+    "max-line-length": [true, 120],
+    "triple-equals": false,
+    "no-console": true,
+    "quotemark": [true, "double"],
+    "variable-name": [true, "allow-leading-underscore"],
+    "trailing-comma": false,
+    "import-name": false
+  }
+}
