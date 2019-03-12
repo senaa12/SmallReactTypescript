@@ -30,6 +30,7 @@ module.exports = {
     },
 
     module: {
+        // ovi svi moduli bi mogli ic u zasebni file koji ce se importat onda
         rules: [
             // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
             {
@@ -43,6 +44,13 @@ module.exports = {
                 test: /\.js$/,
                 loader: "source-map-loader"
             },
+            // registracija tslint-a u bundle, naci kad oces tslint ubacit ti treba tslint & tslint-loader za dev dependencies
+            {
+                enforce: "pre",
+                test: /\.tsx?$/,
+                loader: "tslint-loader",
+                include: [path.resolve(__dirname, "../src")]
+            },
             {
             test: /\.scss$/,
             use: [
@@ -55,14 +63,5 @@ module.exports = {
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(), htmlWebpackPlugin
-    ],
-
-    // When importing a module whose path matches one of the following, just
-    // assume a corresponding global variable exists and use that instead.
-    // This is important because it allows us to avoid bundling all of our
-    // dependencies, which allows browsers to cache those libraries between builds.
-    externals: {
-        "react": "React",
-        "react-dom": "ReactDOM"
-    },
+    ]
 };
