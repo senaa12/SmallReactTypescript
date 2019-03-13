@@ -1,0 +1,88 @@
+@import "../../assets/style.scss";
+
+.loading-circle {
+    margin: 5px 10px;
+    //animation: fade 3s; // FADE ANIMATION SETTINGS, right after circle fills is the best
+    animation-delay: 1.5s;
+    animation-fill-mode: forwards;
+    background-color: white;
+    .checkmark-label {
+        margin-left: 50%;
+        color: $green;
+    }
+
+    // actuall circle that fills, height and width can adjust as wanted, and animation duration
+    .wrapper {
+        position: fixed;
+    }
+    .rectangle-hide {
+        position: relative;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        background-color: white;
+        width: 50%;
+        height: 100%;
+        animation: slide 0.05s; // INSTANTLY hide it
+        animation-delay: 0.5s; // hider must be gone after half animation is finished
+        animation-fill-mode: forwards;
+    }
+
+    /* Set the sizes of the elements that make up the progress bar */
+    .circle {
+        position: absolute;
+        border-color: $green !important;
+        border-radius: 50%;
+        width: 80%;
+        height: 80%;
+        clip-path: polygon(0 0, 50% 0, 50% 100%, 0% 100%)
+    }
+    // basic settings
+    div[data-anim~='base'] {
+        animation-fill-mode: forwards; // last keyframe
+        animation-iteration-count: 1; // only run once
+        animation-timing-function: linear; // linear timinng
+    }
+    .circle[data-anim~='left'] {
+        animation-duration: 1s; // FULL ANIMATION TIME
+        animation-name: left-spin;
+    }
+    .circle[data-anim~='right'] {
+        animation-duration: 0.5s; // HALF ANIMATION TIME
+        animation-name: right-spin;
+    }
+
+    @keyframes right-spin {
+        from {
+            -webkit-transform: rotate(0deg);
+        }
+        to {
+            -webkit-transform: rotate(180deg);
+        }
+    }
+    @keyframes left-spin {
+        from {
+            -webkit-transform: rotate(0deg);
+        }
+        to {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+
+    @keyframes slide {
+        from {
+            height: 100%;
+        }
+        to {
+            height: 0%;
+        }
+    }
+    @keyframes fade {
+        0% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+}
