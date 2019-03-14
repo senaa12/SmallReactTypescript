@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
-    "start": "webpack-dev-server --progress --colors --config ./webpack.config.js --open --mode development --history-api-fallback"
+    "start": "webpack-dev-server NODE_ENV=development --progress --colors --config ./webpack.config.js --open --mode development --history-api-fallback"
   },
   "repository": {
     "type": "git",
