@@ -15,6 +15,7 @@
     // ne radi ovo zakomentirano
     // "indent": [true, "spaces", 6],
     "ter-indent": [true, 4],
-    "prefer-template": false
+    "prefer-template": false,
+    "no-else-after-return": false
   }
 }
