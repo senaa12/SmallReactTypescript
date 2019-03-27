@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
 const htmlWebpackPlugin = new HtmlWebPackPlugin({
     template: "./src/index.html"
@@ -58,10 +59,14 @@ module.exports = {
                 "css-loader", // translates CSS into CommonJS
                 "sass-loader" // compiles Sass to CSS, using Node Sass by default
             ]
-        }
+            },
+            {
+                test: /\.svg$/,
+                loader: "svg-sprite-loader"
+            }
         ]
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin(), htmlWebpackPlugin
+        new webpack.HotModuleReplacementPlugin(), htmlWebpackPlugin, new SpriteLoaderPlugin({ plainSprite: true })
     ]
 };

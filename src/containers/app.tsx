@@ -4,6 +4,7 @@ import "./app.scss";
 import Layer from "../components/layer/layer";
 import Button from "../components/button/button";
 import ActionCircle, { ActionCirlceSizeEnum } from "../components/actionCircle/actionCircle";
+import Icon from "../components/icon/icon";
 
 export interface AppProps{
 
@@ -31,7 +32,8 @@ export default class App extends React.Component<AppProps, AppState> {
             <br /><br /><br /><br /><br />
             <Layer isOpen={this.state.portalShown} dimBackground={true}>probaaa</Layer>
             <Button onClick={this._showPortal}>Show Portal</Button>
-            <ActionCircle label="Success" shouldShow={true} size={ActionCirlceSizeEnum.Big}/>
+            <ActionCircle label="Success" shouldShow={true} size={ActionCirlceSizeEnum.Small}/>
+            <Icon iconName={"svg-checkmark"}/>
             </>
         );
     }
