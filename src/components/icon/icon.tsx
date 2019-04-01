@@ -1,37 +1,67 @@
 import * as React from "react";
-
 import "./icon.scss";
+
+export enum IconSizeEnum {
+    Smallest, // 16x16
+    Small, // 24x24
+    Normal, // 32x32
+    Big // 64x64
+}
 
 export interface IconProps {
     iconName: string;
-    // TODO: iconSize: ili enum ili fizicki broj
+    iconSize?: IconSizeEnum;
+    className?: string;
 }
 
 export interface IconState {
     useTag: string;
+    iconSize: string;
 }
 
 export default class Icon extends React.Component<IconProps, IconState> {
     constructor(props: IconProps) {
         super(props);
-        this.state = { useTag : "" };
+        this.state = { useTag : "", iconSize: "" };
+    }
+
+    private getIconSize = () => {
+        switch (this.props.iconSize) {
+        case IconSizeEnum.Smallest:
+            return "16px";
+        case IconSizeEnum.Small:
+            return "24px";
+        case IconSizeEnum.Normal:
+            return "32px";
+        case IconSizeEnum.Big:
+            return "64px";
+        default: return "32px";
+        }
     }
 
     public componentDidMount() {
         try {
             // TODO: napravit treba put do ikona dinamicki da se cita negdje
             const icon = require("../../assets/svg/" + this.props.iconName + ".svg");
-            // tslint:disable-next-line:quotemark
-            this.setState({ useTag: '<use xlink:href="#' + icon.default.id + '\"></use>' });
-        } catch {
-            // TODO: napraviti kak se hendla error lijepo a ne console.log
-            console.log("error happend");
+            this.setState({
+                // tslint:disable-next-line:quotemark
+                useTag: '<use xlink:href="#' + icon.default.id + '\"></use>',
+                iconSize: this.getIconSize()
+            });
+        } catch (ex) {
+            // tslint:disable-next-line:no-console
+            console.log(ex);
         }
     }
 
     public render(): React.ReactElement<Icon> {
         return (
-            <svg className={this.props.iconName} dangerouslySetInnerHTML={{ __html: this.state.useTag }} />
+            <svg
+                className={this.props.iconName + " " + this.props.className}
+                dangerouslySetInnerHTML={{ __html: this.state.useTag }}
+                width={this.state.iconSize}
+                height={this.state.iconSize}
+            />
         );
     }
 }

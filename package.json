@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
-    "start": "webpack-dev-server NODE_ENV=development --progress --colors --config ./webpack.config.js --open --mode development --history-api-fallback"
+    "start": "cross-env NODE_ENV=development webpack-dev-server --progress --colors --config ./webpack.config.js --open --mode development --history-api-fallback"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
     "@types/react": "^16.7.20",
     "@types/react-dom": "^16.0.11",
     "awesome-typescript-loader": "^5.2.1",
+    "cross-env": "^5.2.0",
     "css-loader": "^2.1.0",
     "html-webpack-plugin": "^3.2.0",
     "node-sass": "^4.11.0",

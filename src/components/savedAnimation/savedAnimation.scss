@@ -1,13 +1,15 @@
 @import "../../assets/style.scss";
 
 .loading-circle {
+    display: flex;
+    align-items: center;
     margin: 5px 10px;
-    //animation: fade 3s; // FADE ANIMATION SETTINGS, right after circle fills is the best
+    animation: fade 3s; // FADE ANIMATION SETTINGS, right after circle fills is the best
     animation-delay: 1.5s;
     animation-fill-mode: forwards;
     background-color: white;
     .checkmark-label {
-        margin-left: 50%;
+        margin-left: 30px;
         color: $green;
     }
 
@@ -16,7 +18,7 @@
         position: fixed;
     }
     .rectangle-hide {
-        position: relative;
+        position: fixed;
         top: 0;
         left: 0;
         z-index: 1;
@@ -26,6 +28,13 @@
         animation: slide 0.05s; // INSTANTLY hide it
         animation-delay: 0.5s; // hider must be gone after half animation is finished
         animation-fill-mode: forwards;
+    }
+
+    .svg-checkmark {
+        position: relative;
+        top: 5px;
+        left: 4px;
+        fill: $green;
     }
 
     /* Set the sizes of the elements that make up the progress bar */
@@ -78,10 +87,10 @@
         }
     }
     @keyframes fade {
-        0% {
+        from {
             opacity: 1;
         }
-        100% {
+        to {
             opacity: 0;
         }
     }

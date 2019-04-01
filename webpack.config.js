@@ -3,9 +3,10 @@ const path = require('path');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
-const htmlWebpackPlugin = new HtmlWebPackPlugin({
-    template: "./src/index.html"
-  });
+const htmlWebpackPlugin = new HtmlWebPackPlugin({ template: "./src/index.html" });
+const svgSpriteLoaderPlugin = new SpriteLoaderPlugin({ plainSprite: true });
+const hotModuleReplacementPlugin = new webpack.HotModuleReplacementPlugin();
+const definePlugin = new webpack.DefinePlugin({ 'process.env': {  NODE_ENV: JSON.stringify(process.env.NODE_ENV) }});
 
 module.exports = {
     entry: "./src/index.tsx",
@@ -45,7 +46,7 @@ module.exports = {
                 test: /\.js$/,
                 loader: "source-map-loader"
             },
-            // registracija tslint-a u bundle, naci kad oces tslint ubacit ti treba tslint & tslint-loader za dev dependencies
+            // registering tslint-loader
             {
                 enforce: "pre",
                 test: /\.tsx?$/,
@@ -67,6 +68,6 @@ module.exports = {
         ]
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin(), htmlWebpackPlugin, new SpriteLoaderPlugin({ plainSprite: true })
+        hotModuleReplacementPlugin, htmlWebpackPlugin, svgSpriteLoaderPlugin, definePlugin
     ]
 };

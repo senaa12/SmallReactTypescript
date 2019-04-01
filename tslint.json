@@ -12,8 +12,6 @@
     "variable-name": [true, "allow-leading-underscore"],
     "trailing-comma": false,
     "import-name": false,
-    // ne radi ovo zakomentirano
-    // "indent": [true, "spaces", 6],
     "ter-indent": [true, 4],
     "prefer-template": false,
     "no-else-after-return": false
