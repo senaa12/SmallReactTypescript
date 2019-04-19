@@ -1,24 +1,24 @@
-import { AjaxResponse, AjaxResponseTypeEnum } from "../assets/ajaxResponse";
+import { AjaxResponse } from "../assets/ajaxResponse";
+import appSettings from "./appSettings";
 
 interface IRequestActionOptions {
     requestUrl: string;
     requestActionName: string;
     requestActionPayload?: any;
-    jsonResponseExpected?: boolean;
     requestInit?: RequestInit;
-    responsePayloadMapper?(payload: any): any;
-    errorPayloadMapper?(error: any): any;
 }
 
 class Fetcher {
+    // on BE part enable cors & register so API responds in json format
     private readonly init: RequestInit = {
-        mode: "cors",
+        method: "cors",
+        cache: "no-cache",
         headers: {
             "Content-Type": "application/json"
         }
     };
 
-    public handleRequestAction(dispatch: any, options: IRequestActionOptions): Promise<any> {
+    public simpleFetch(dispatch: any, options: IRequestActionOptions): Promise<any> {
         // tslint:disable-next-line:no-parameter-reassignment
         options = { ...options };
 
@@ -26,54 +26,28 @@ class Fetcher {
         const responseAction: string = `${options.requestActionName}_RESPONSE`;
         const errorAction: string = `${options.requestActionName}_ERROR`;
 
-        if (options.jsonResponseExpected === undefined) {
-            options.jsonResponseExpected = true;
-        }
-
         dispatch({
             type: requestAction,
             payload: options.requestActionPayload
         });
 
         let url: string = options.requestUrl;
-        // treba procitat environment i saznat na koji url saljes zahtjev
-        if (process.env.environment === "development") {
-            url = "http://localhost:44300" + url;
+        if (appSettings.environment === "development") {
+            url = appSettings.backendUrl + url;
         }
 
         return fetch(url, { ...this.init, ...options.requestInit })
         .then((response) => {
-            let ajaxResponse: AjaxResponse;
             if (response.ok) {
-                if (options.jsonResponseExpected) {
-                    return response.json().then((jsonResponse) => {
-                        ajaxResponse = jsonResponse as AjaxResponse;
-                        if (ajaxResponse.responseType === AjaxResponseTypeEnum.success) {
-                            if (ajaxResponse.errorMessage != null) {
-
-                            }
-                            dispatch({
-                                type: responseAction,
-                                payload: options.responsePayloadMapper
-                                    ? options.responsePayloadMapper(ajaxResponse)
-                                    : ajaxResponse
-                            });
-                        } else {
-
-                            dispatch({
-                                type: responseAction,
-                                payload: ajaxResponse
-                            });
-                        }
-                        return Promise.resolve(ajaxResponse as any);
+                return response.json().then((jsonResponse) => {
+                    const ajaxResponse = jsonResponse as AjaxResponse;
+                    dispatch({
+                        type: responseAction,
+                        payload: ajaxResponse
                     });
-                }
-                dispatch({
-                    type: responseAction,
-                    payload: null
-                });
-                return Promise.resolve();
 
+                    return Promise.resolve(ajaxResponse);
+                });
             } else {
                 let payload: any = {
                     status: response.status,
@@ -81,16 +55,9 @@ class Fetcher {
                     body: null
                 };
 
-                // potencijalni redirect
-                // if (payload.status === 403) {
-                //     hashHistory.push("/FourOhThree");
-                // }
-                // if (payload.status === 404) {
-                //     hashHistory.push("/FourOhFour");
-                // }
+                // REDIRECT TO ERROR HANDLE, NO DISPATCH HERE
 
-                return response
-                    .json()
+                return response.json()
                     .then((errorResponse) => {
                         payload = { ...payload, body: errorResponse };
                     })
@@ -105,15 +72,9 @@ class Fetcher {
                 ? error.status + "<br />" + error.genericMessage + "<br />"
                 : error.message;
 
-            let payload: any = (error.status !== undefined && error.body !== undefined && error) || null;
-
-            if (options.errorPayloadMapper) {
-                payload = options.errorPayloadMapper(payload);
-            }
-
             dispatch({
                 type: errorAction,
-                payload
+                payload: message
             });
 
             return Promise.reject(error);

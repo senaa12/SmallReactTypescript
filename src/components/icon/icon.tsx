@@ -57,7 +57,7 @@ export default class Icon extends React.Component<IconProps, IconState> {
     public render(): React.ReactElement<Icon> {
         return (
             <svg
-                className={this.props.iconName + " " + this.props.className}
+                className={this.props.iconName + (this.props.className ? " " + this.props.className : "")}
                 dangerouslySetInnerHTML={{ __html: this.state.useTag }}
                 width={this.state.iconSize}
                 height={this.state.iconSize}

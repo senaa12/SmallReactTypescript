@@ -63,7 +63,8 @@ module.exports = {
             },
             {
                 test: /\.svg$/,
-                loader: "svg-sprite-loader"
+                loader: "svg-sprite-loader",
+                include: [path.resolve("./src/assets/svg")]
             }
         ]
     },

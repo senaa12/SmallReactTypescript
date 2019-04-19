@@ -16,6 +16,8 @@
     // actuall circle that fills, height and width can adjust as wanted, and animation duration
     .wrapper {
         position: fixed;
+        height: 25px;
+        width: 25px;
     }
     .rectangle-hide {
         position: fixed;
@@ -37,11 +39,13 @@
         fill: $green;
     }
 
+
     /* Set the sizes of the elements that make up the progress bar */
     .circle {
         position: absolute;
         border-color: $green !important;
         border-radius: 50%;
+        border: 2.5px solid;
         width: 80%;
         height: 80%;
         clip-path: polygon(0 0, 50% 0, 50% 100%, 0% 100%)
