@@ -10,7 +10,7 @@ const htmlWebpackPlugin = new HtmlWebPackPlugin({
 });
 const svgSpriteLoaderPlugin = new SpriteLoaderPlugin({ 
     plainSprite: true 
-});
+}); 
 const definePlugin = new webpack.DefinePlugin({ 
     'process.env': {  NODE_ENV: JSON.stringify(process.env.NODE_ENV) },
     '__REACT_DEVTOOLS_GLOBAL_HOOK__': '({ isDisabled: true })'

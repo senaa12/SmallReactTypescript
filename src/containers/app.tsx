@@ -1,16 +1,43 @@
+import { RootReducerState } from "../reducers/rootReducer";
+import { Dispatch } from "redux";
+import { connect } from "react-redux";
+
 import * as React from "react";
 import "./app.scss";
+import { initialAction } from "../actions/app";
 
-export interface AppProps{
+interface AppOwnProps{
 }
+
+interface AppStateProps{
+}
+
+interface AppDispatchProps{
+    initialAction: () => void;
+}
+
+type AppProps = AppOwnProps & AppStateProps & AppDispatchProps;
 
 export interface AppState {
 }
 
-export default class App extends React.Component<AppProps, AppState> {
+const mapStateToProps = (state: RootReducerState, ownProps: AppOwnProps): AppStateProps => {
+    return{};
+}
+
+const mapDispatchToProps = (dispatch: Dispatch): AppDispatchProps => {
+    return{
+        initialAction: () => dispatch(initialAction())
+    };
+}
+
+class App extends React.Component<AppProps, AppState> {
     constructor(props: AppProps) {
         super(props);
+    }
 
+    componentDidMount(){
+        this.props.initialAction();
     }
 
     public render() {
@@ -21,3 +48,5 @@ export default class App extends React.Component<AppProps, AppState> {
         );
     }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
