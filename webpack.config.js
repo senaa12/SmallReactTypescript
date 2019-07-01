@@ -3,10 +3,18 @@ const path = require('path');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
-const htmlWebpackPlugin = new HtmlWebPackPlugin({ template: "./src/index.html" });
-const svgSpriteLoaderPlugin = new SpriteLoaderPlugin({ plainSprite: true });
 const hotModuleReplacementPlugin = new webpack.HotModuleReplacementPlugin();
-const definePlugin = new webpack.DefinePlugin({ 'process.env': {  NODE_ENV: JSON.stringify(process.env.NODE_ENV) }});
+const htmlWebpackPlugin = new HtmlWebPackPlugin({ 
+    template: "./src/index.html", 
+    inject: false 
+});
+const svgSpriteLoaderPlugin = new SpriteLoaderPlugin({ 
+    plainSprite: true 
+});
+const definePlugin = new webpack.DefinePlugin({ 
+    'process.env': {  NODE_ENV: JSON.stringify(process.env.NODE_ENV) },
+    '__REACT_DEVTOOLS_GLOBAL_HOOK__': '({ isDisabled: true })'
+});
 
 module.exports = {
     entry: "./src/index.tsx",

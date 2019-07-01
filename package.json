@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
-    "start": "cross-env NODE_ENV=development webpack-dev-server --progress --colors --config ./webpack.config.js --open --mode development --history-api-fallback"
+    "start": "cross-env NODE_ENV=development webpack-dev-server --progress --colors --config ./webpack.config.js --open --history-api-fallback"
   },
   "repository": {
     "type": "git",
