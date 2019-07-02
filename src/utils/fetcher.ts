@@ -1,4 +1,4 @@
-import { AjaxResponse } from "../assets/ajaxResponse";
+import { AjaxResponse } from "../model/ajaxResponse";
 import appSettings from "./appSettings";
 
 interface IRequestActionOptions {
@@ -32,7 +32,7 @@ class Fetcher {
         });
 
         let url: string = options.requestUrl;
-        if (appSettings.environment === "development") {
+        if (appSettings.isDevelopment) {
             url = appSettings.backendUrl + url;
         }
 

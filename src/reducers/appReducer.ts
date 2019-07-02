@@ -1,4 +1,4 @@
-import { Action } from "../model/common";
+import { Action } from "../model/appStructures";
 import { AppActions } from "../actions/app";
 
 export interface AppReducerState {

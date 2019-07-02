@@ -1,9 +1,9 @@
 class AppSettings {
-    public environment: string;
+    public isDevelopment: boolean;
     public backendUrl: string;
 
     constructor() {
-        this.environment = process.env.NODE_ENV;
+        this.isDevelopment = process.env.NODE_ENV == "development"; 
         this.backendUrl = null;
     }
 }

@@ -1,3 +1,5 @@
+@import "./assets/style.scss";
+
 html{
     height: 100%;
 }
@@ -5,6 +7,13 @@ html{
 body{
     height: 100%;
     margin: 0px;
+
+    /** colors **/
+    @include color-shades($blue, blue);
+    @include color-shades($green, green);
+    @include color-shades($yellow, yellow);
+    @include color-shades($red, red);
+    @include color-shades($grey, grey);
 }
 
 .disable-selection {
