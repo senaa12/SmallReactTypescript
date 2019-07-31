@@ -1,13 +1,15 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
+import { connectRouter } from "connected-react-router";
 
 import appReducer, { AppReducerState } from "./appReducer";
 
 export interface RootReducerState {
-    app: AppReducerState;   
-};
+    app: AppReducerState;
+}
 
-export default function createReducers() {
+export default function createReducers(history: any) {
     const reducers = {
+        router: connectRouter(history),
         app: appReducer
     };
 

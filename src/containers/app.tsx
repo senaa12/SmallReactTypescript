@@ -23,20 +23,20 @@ export interface AppState {
 
 const mapStateToProps = (state: RootReducerState, ownProps: AppOwnProps): AppStateProps => {
     return{};
-}
+};
 
 const mapDispatchToProps = (dispatch: Dispatch): AppDispatchProps => {
     return{
         initialAction: () => dispatch(initialAction())
     };
-}
+};
 
 class App extends React.Component<AppProps, AppState> {
     constructor(props: AppProps) {
         super(props);
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.props.initialAction();
     }
 
