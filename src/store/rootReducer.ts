@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import { connectRouter } from "connected-react-router";
 
-import appReducer, { AppReducerState } from "./appReducer";
+import appReducer, { AppReducerState } from "../reducers/appReducer";
 
 export interface RootReducerState {
     app: AppReducerState;

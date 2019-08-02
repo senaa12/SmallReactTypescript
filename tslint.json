@@ -9,11 +9,12 @@
     "triple-equals": false,
     "no-console": true,
     "quotemark": [true, "double"],
-    "variable-name": [true, "allow-leading-underscore"],
+    "variable-name": [false, "allow-leading-underscore"],
     "trailing-comma": false,
     "import-name": false,
     "ter-indent": [true, 4],
     "prefer-template": false,
-    "no-else-after-return": false
+    "no-else-after-return": false, 
+    "prefer-array-literal": false
   }
 }

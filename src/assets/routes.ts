@@ -1,3 +1,5 @@
 export enum Routes {
-    Root = "/"
+    Anything = "*",
+    Root = "/",
+    Four_Oh_Four = "/404"
 }

@@ -1,4 +1,4 @@
-import createReducers, { RootReducerState } from "../reducers/rootReducer";
+import createReducers, { RootReducerState } from "./rootReducer";
 import { Store, createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { routerMiddleware } from "connected-react-router";
@@ -24,6 +24,8 @@ const getMiddelware: any = (history: any) => {
     const logger: any = createLogger({
         predicate: (getState: () => RootReducerState, action: Action) => {
             switch (action.type) {
+            case "@@router/LOCATION_CHANGE":
+                return false;
             default:
                 return appSettings.isDevelopment;
             }

@@ -1,4 +1,4 @@
-import { RootReducerState } from "../reducers/rootReducer";
+import { RootReducerState } from "../store/rootReducer";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
 

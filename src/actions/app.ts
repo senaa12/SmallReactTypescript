@@ -1,4 +1,4 @@
-import { RootReducerState } from "../reducers/rootReducer";
+import { RootReducerState } from "../store/rootReducer";
 
 export enum AppActions {
     InitialAction = "@App/Initial_Action"
